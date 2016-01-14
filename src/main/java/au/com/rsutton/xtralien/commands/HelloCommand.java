@@ -14,4 +14,9 @@ public class HelloCommand implements XtrCommand<String>
 
 	}
 
+	public String getSimulatedRawData()
+	{
+		return "Hello World";
+	}
+
 }

@@ -31,4 +31,8 @@ public class SetVoltageCommand implements XtrCommand<Void>
 
 	}
 
+	public String getSimulatedRawData()
+	{
+		return "";
+	}
 }

@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import au.com.rsutton.xtralien.commands.XtrCommand;
+
 public class XtrSocketConnection implements XtrConnection
 {
 
@@ -22,9 +24,9 @@ public class XtrSocketConnection implements XtrConnection
 	}
 	
 
-	public String sendCommand(String command) throws IOException
+	public String sendCommand(XtrCommand<?> command) throws IOException
 	{
-		out.print(command);
+		out.print(command.getCommand());
 		
 		String result = "";
 		int ch;

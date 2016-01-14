@@ -21,9 +21,17 @@ public class MeasureVoltageCommand implements XtrCommand<Double>
 
 	public XtrResults<Double> getResult(String rawData)
 	{
-		return new XtrResults<Double>(false,"",Double.parseDouble(rawData));
-
+		try
+		{
+			return new XtrResults<Double>(false, rawData, Double.parseDouble(rawData));
+		} catch (Exception e)
+		{
+			return new XtrResults<Double>(true, rawData, 0.0);
+		}
 	}
-
+	public String getSimulatedRawData()
+	{
+		return "5.25";
+	}
 
 }

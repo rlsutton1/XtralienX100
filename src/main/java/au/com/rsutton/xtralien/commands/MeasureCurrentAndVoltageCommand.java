@@ -1,6 +1,6 @@
 package au.com.rsutton.xtralien.commands;
 
-public class MeasureCurrentAndVoltageCommand implements XtrCommand<Double>
+public class MeasureCurrentAndVoltageCommand implements XtrCommand<DataPoint>
 {
 
 	private int smu;
@@ -19,10 +19,24 @@ public class MeasureCurrentAndVoltageCommand implements XtrCommand<Double>
 		return "smu["+smu+"] measurev";
 	}
 
-	public XtrResults<Double> getResult(String rawData)
+	public XtrResults<DataPoint> getResult(String rawData)
 	{
-		return new XtrResults<Double>(false,"",Double.parseDouble(rawData));
+		try
+		{
+			String data = rawData.replace("[", "").replace("]", "");
 
+			String[] parts = data.split(",");
+			DataPoint point = new DataPoint(Double.parseDouble(parts[0]), Double.parseDouble(parts[1]));
+			return new XtrResults<DataPoint>(false, rawData, point);
+		} catch (Exception e)
+		{
+			return new XtrResults<DataPoint>(true, rawData, null);
+		}
+	}
+
+	public String getSimulatedRawData()
+	{
+		return "[5.30,4.27]";
 	}
 
 }

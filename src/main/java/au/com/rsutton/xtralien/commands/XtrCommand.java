@@ -7,5 +7,5 @@ public interface XtrCommand<T>
 	
 	public XtrResults<T> getResult(String rawData);
 	
-	
+	public String getSimulatedRawData();
 }
