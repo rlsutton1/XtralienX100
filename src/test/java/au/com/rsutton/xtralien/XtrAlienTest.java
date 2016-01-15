@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 
+import jssc.SerialPortException;
+
 import org.junit.Test;
 
 import au.com.rsutton.xtralien.commands.HelloCommand;
@@ -15,7 +17,7 @@ public class XtrAlienTest
 {
 
 	@Test
-	public void test() throws IOException
+	public void test() throws IOException, SerialPortException
 	{
 		XtrConnection connection = new XtrSimulationConnection();
 		XtrAlien alien = new XtrAlien(connection);

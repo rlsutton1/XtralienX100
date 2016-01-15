@@ -1,22 +1,22 @@
 package au.com.rsutton.xtralien.commands;
 
-public class MeasureCurrentCommand implements XtrCommand<Double>
+public class MeasureCommand implements XtrCommand<Double>
 {
 
-	private int smu;
-
-	MeasureCurrentCommand(int smu)
+	private int vsense;
+	
+	MeasureCommand(int vsense)
 	{
-		this.smu = smu;
-		if (smu < 1 || smu > 2)
+		this.vsense = vsense;
+		if (vsense < 1 || vsense > 2)
 		{
-			throw new RuntimeException("SMU must be either 1 or 2");
+			throw new RuntimeException("VSense must be either 1 or 2");
 		}
 	}
 
 	public String getCommand()
 	{
-		return "smu[" + smu + "] measurei";
+		return "vsense["+vsense+"] measure";
 	}
 
 	public XtrResults<Double> getResult(String rawData)
@@ -28,16 +28,14 @@ public class MeasureCurrentCommand implements XtrCommand<Double>
 		{
 			return new XtrResults<Double>(true, rawData, 0.0);
 		}
-
 	}
-
 	public String getSimulatedRawData()
 	{
 		return "5.25";
 	}
+
 	public boolean expectsResponse()
 	{
 		return true;
 	}
-
 }

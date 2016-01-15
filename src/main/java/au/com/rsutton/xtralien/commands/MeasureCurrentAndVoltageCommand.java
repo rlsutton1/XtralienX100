@@ -39,4 +39,9 @@ public class MeasureCurrentAndVoltageCommand implements XtrCommand<DataPoint>
 		return "[5.30,4.27]";
 	}
 
+	public boolean expectsResponse()
+	{
+		return true;
+	}
+
 }

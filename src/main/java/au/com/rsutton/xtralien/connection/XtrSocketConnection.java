@@ -16,23 +16,27 @@ public class XtrSocketConnection implements XtrConnection
 	private InputStreamReader in;
 	private String host;
 	private int port;
-	
-	XtrSocketConnection(String host, int port)
+
+	public XtrSocketConnection(String host, int port)
 	{
 		this.host = host;
 		this.port = port;
 	}
-	
 
 	public String sendCommand(XtrCommand<?> command) throws IOException
 	{
 		out.print(command.getCommand());
-		
+		out.flush();
+
 		String result = "";
-		int ch;
-		while ((ch = in.read())!=-1)
+		if (command.expectsResponse())
 		{
-			result+=ch;
+
+			int ch;
+			while ((ch = in.read()) != -1)
+			{
+				result += ch;
+			}
 		}
 		return result;
 	}
@@ -46,7 +50,7 @@ public class XtrSocketConnection implements XtrConnection
 
 	}
 
-	public void disconnect() throws IOException
+	public void close() throws IOException
 	{
 		in.close();
 		out.close();

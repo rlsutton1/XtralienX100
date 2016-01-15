@@ -1,11 +1,11 @@
 package au.com.rsutton.xtralien.commands;
 
-public class MeasureCurrentCommand implements XtrCommand<Double>
+public class GetVoltageCommand implements XtrCommand<Double>
 {
 
 	private int smu;
-
-	MeasureCurrentCommand(int smu)
+	
+	GetVoltageCommand(int smu)
 	{
 		this.smu = smu;
 		if (smu < 1 || smu > 2)
@@ -16,7 +16,7 @@ public class MeasureCurrentCommand implements XtrCommand<Double>
 
 	public String getCommand()
 	{
-		return "smu[" + smu + "] measurei";
+		return "smu["+smu+"] get voltage";
 	}
 
 	public XtrResults<Double> getResult(String rawData)
@@ -28,16 +28,14 @@ public class MeasureCurrentCommand implements XtrCommand<Double>
 		{
 			return new XtrResults<Double>(true, rawData, 0.0);
 		}
-
 	}
-
 	public String getSimulatedRawData()
 	{
 		return "5.25";
 	}
+
 	public boolean expectsResponse()
 	{
 		return true;
 	}
-
 }

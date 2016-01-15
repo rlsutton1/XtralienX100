@@ -10,13 +10,22 @@ public class HelloCommand implements XtrCommand<String>
 
 	public XtrResults<String> getResult(String rawData)
 	{
-		return new XtrResults<String>(false,rawData,rawData);
+		if (rawData.equalsIgnoreCase("Hello world"))
+		{
+			return new XtrResults<String>(false,rawData,rawData);	
+		}
+		return new XtrResults<String>(true, rawData, rawData);
 
 	}
 
 	public String getSimulatedRawData()
 	{
 		return "Hello World";
+	}
+
+	public boolean expectsResponse()
+	{
+		return true;
 	}
 
 }

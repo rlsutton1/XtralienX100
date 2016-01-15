@@ -63,12 +63,16 @@ public class SweepCommand implements XtrCommand<List<DataPoint>>
 		for (double i = fromVoltage; i < toVoltage; i += stepSize)
 
 		{
-			ret += "" + i + ",0.00";
-			if (i < toVoltage)
-			{
-				ret += ";";
-			}
+			ret += "" + i + ",0.00;";
+
+
 		}
 		return ret + "]";
 	}
+
+	public boolean expectsResponse()
+	{
+		return true;
+	}
+
 }

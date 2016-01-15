@@ -19,7 +19,7 @@ public class XtrSimulationConnection implements XtrConnection
 		
 	}
 
-	public void disconnect() throws IOException
+	public void close() throws IOException
 	{
 		
 

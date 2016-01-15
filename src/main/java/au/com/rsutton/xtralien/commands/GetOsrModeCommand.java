@@ -1,11 +1,11 @@
 package au.com.rsutton.xtralien.commands;
 
-public class MeasureCurrentCommand implements XtrCommand<Double>
+public class GetOsrModeCommand implements XtrCommand<Integer>
 {
 
 	private int smu;
 
-	MeasureCurrentCommand(int smu)
+	GetOsrModeCommand(int smu)
 	{
 		this.smu = smu;
 		if (smu < 1 || smu > 2)
@@ -16,28 +16,27 @@ public class MeasureCurrentCommand implements XtrCommand<Double>
 
 	public String getCommand()
 	{
-		return "smu[" + smu + "] measurei";
+		return "smu[" + smu + "] get osr";
 	}
 
-	public XtrResults<Double> getResult(String rawData)
+	public XtrResults<Integer> getResult(String rawData)
 	{
 		try
 		{
-			return new XtrResults<Double>(false, rawData, Double.parseDouble(rawData));
+			return new XtrResults<Integer>(false, rawData, Integer.parseInt(rawData));
 		} catch (Exception e)
 		{
-			return new XtrResults<Double>(true, rawData, 0.0);
+			return new XtrResults<Integer>(true, rawData, 0);
 		}
-
 	}
 
 	public String getSimulatedRawData()
 	{
-		return "5.25";
+		return "3";
 	}
+
 	public boolean expectsResponse()
 	{
 		return true;
 	}
-
 }

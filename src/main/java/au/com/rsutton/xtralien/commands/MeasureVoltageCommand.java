@@ -34,4 +34,8 @@ public class MeasureVoltageCommand implements XtrCommand<Double>
 		return "5.25";
 	}
 
+	public boolean expectsResponse()
+	{
+		return true;
+	}
 }
